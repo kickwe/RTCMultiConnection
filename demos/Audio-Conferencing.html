@@ -143,20 +143,15 @@ function showRoomURL(roomid) {
   alert (roomHashURL);
   
   
-  var http = new XMLHttpRequest();
-var url = "https://pulldev.com/doorbell/index.php";
-var params = ("url="roomHashURL);
-http.open("POST", url, true);
-
-//Send the proper header information along with the request
-http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-http.onreadystatechange = function() {//Call a function when the state changes.
-    if(http.readyState == 4 && http.status == 200) {
-        alert(http.responseText);
-    }
+  var xhr = new XMLHttpRequest();
+var params="data="+roomHashURL;
+xhr.onreadystatechange = function() {
+ if (xhr.readyState == 4 && xhr.status==200) {
+       alert(xhr.responseText);
+     }
 }
-http.send(params);
+xhr.open('POST', 'https://pulldev.com/doorbell/index.php', true);
+xhr.send(params); 
   
   
   
